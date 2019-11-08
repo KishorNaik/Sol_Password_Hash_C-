@@ -8,12 +8,12 @@
 PM> Install-Package HashPassword -Version 1.0.0
 ```
 
-### Using .Net CLI
+### Using .Net CLI:
 ```
 > dotnet add package HashPassword --version 1.0.0
 ```
 
-### Usage
+### Usage.
 ```C#
 static void Main(string[] args)
 {
