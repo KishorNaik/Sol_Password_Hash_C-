@@ -19,7 +19,7 @@ namespace HashPassword
 
     public static class Hash
     {
-        public static async Task<String> CreateAsync(string password,string salt)
+        public static async Task<String> CreateAsync(string password,string salt,ByteRange byteRange)
         {
             return await Task.Run(() => {
 
@@ -28,13 +28,15 @@ namespace HashPassword
                        salt: Encoding.UTF8.GetBytes(salt),
                        prf: KeyDerivationPrf.HMACSHA1,
                        iterationCount: 10000,
-                       numBytesRequested: 256 / 8));
+                       //numBytesRequested: 256 / 8)
+                       numBytesRequested: (int)byteRange / 8)
+                    );
 
             });
         }
 
         
-        public static async Task<bool> ValidateAsync(string password, string salt, string hash)
-         => await CreateAsync(password, salt) == hash;
+        public static async Task<bool> ValidateAsync(string password, string salt, string hash,ByteRange byteRange)
+         => await CreateAsync(password, salt,byteRange) == hash;
     }
 }

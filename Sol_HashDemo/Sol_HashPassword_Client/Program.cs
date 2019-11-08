@@ -12,20 +12,19 @@ namespace Sol_HashPassword_Client
 
             Task.Run(async () => {
 
-                var password = "kishor11";
+                var password = "mak123";
 
-                var saltData = await Salt.CreateAsync(ByteRange.byte128);
-                var hashData = await Hash.CreateAsync(password, saltData);
-
-                var flag = await Hash.ValidateAsync("kishor11", saltData, hashData);
-
+                var saltData = await Salt.CreateAsync(ByteRange.byte256);
                 Console.WriteLine(saltData);
 
-                saltData = await Salt.CreateAsync(ByteRange.byte128);
-                hashData = await Hash.CreateAsync(password, saltData);
+                var hashData = await Hash.CreateAsync(password, saltData,ByteRange.byte256);
+                Console.WriteLine(hashData);
+
+                var flag = await Hash.ValidateAsync("mak123", saltData, hashData,ByteRange.byte256);
+                Console.WriteLine(flag);
                 
-                Console.WriteLine(saltData);
 
+               
             
             }).Wait();
 
