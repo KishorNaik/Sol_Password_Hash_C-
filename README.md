@@ -39,9 +39,6 @@ static void Main(string[] args)
         var flag = await Hash.ValidateAsync("mak123", saltData, hashData,ByteRange.byte256);
         Console.WriteLine(flag);
 
-
-
-
     }).Wait();
 
 }
